@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.12.19
+# v0.12.20
 
 using Markdown
 using InteractiveUtils
@@ -418,8 +418,7 @@ md"""
 
 # ╔═╡ 63e8d636-ee0b-11ea-173d-bd3327347d55
 function invert(color::AbstractRGB)
-	
-	return missing
+	return RGB(1-color.r, 1-color.g, 1-color.b)
 end
 
 # ╔═╡ 2cc2f84e-ee0d-11ea-373b-e7ad3204bb00
@@ -441,7 +440,7 @@ invert(red)
 md"Can you invert the picture of Philip?"
 
 # ╔═╡ 943103e2-ee0b-11ea-33aa-75a8a1529931
-philip_inverted = missing
+philip_inverted = invert.(philip)
 
 # ╔═╡ 2ee543b2-64d6-11eb-3c39-c5660141787e
 md"""
@@ -491,7 +490,7 @@ And then modify it:
 # ╔═╡ 4f03f651-56ed-4361-b954-e6848ac56089
 let
 	temp = copy(philip_head)
-	temp[50, 50:100] .= RGB(1.0, 0.0, 0.0)
+	temp[50, 50:100] .= RGB(0.0, 1.0, 0.0)
 	temp
 end
 
@@ -503,7 +502,7 @@ Similarly we can modify a whole rectangular block of pixels:
 # ╔═╡ 1bd53326-d705-4d1a-bf8f-5d7f2a4e696f
 let
 	temp = copy(philip_head)
-	temp[50:100, 50:100] .= RGB(1.0, 0.0, 0.0)
+	temp[50:100, 50:100] .= RGB(0.0, 0.0, 1.0)
 	temp
 end
 
@@ -516,8 +515,9 @@ md"""
 
 # ╔═╡ b6b65b94-edf0-11ea-3686-fbff0ff53d08
 function create_bar()
-	
-	return missing
+	bar = zeros(100)
+	bar[41:61].=1
+	return bar
 end
 
 # ╔═╡ 693af19c-64cc-11eb-31f3-57ab2fbae597
@@ -710,6 +710,18 @@ When you move the slider, you should see the number of red color patches change!
 md"""
 What is going on here is that we are creating a vector in which `red_value` takes each value in turn from the range from `0` up to the current value of `number_reds`. If we change `number_reds`, then we create a new vector with that new number of red patches.
 """
+
+# ╔═╡ 7e3b6c9c-6fb3-11eb-3288-e5a7dffb3387
+@bind slider_red Slider(1:100, show_value=true)
+
+# ╔═╡ bb18fab2-6fb3-11eb-1d04-8332c57c9b4c
+@bind slider_green Slider(1:100, show_value=true)
+
+# ╔═╡ bb1d1d3e-6fb3-11eb-2f56-01047ee62b7a
+@bind slider_blue Slider(1:100, show_value=true)
+
+# ╔═╡ c12d94b2-6fb3-11eb-196c-f599816dc42e
+RGB(slider_red/255,slider_green/255,slider_blue/255)
 
 # ╔═╡ 82a8314c-64d8-11eb-1acb-e33625381178
 md"""
@@ -1259,6 +1271,10 @@ md"_Lecture 1, Spring 2021, version 0_"
 # ╠═88933746-6028-11eb-32de-13eb6ff43e29
 # ╟─1c539b02-64d8-11eb-3505-c9288357d139
 # ╟─10f6e6da-64d8-11eb-366f-11f16e73043b
+# ╠═7e3b6c9c-6fb3-11eb-3288-e5a7dffb3387
+# ╠═bb18fab2-6fb3-11eb-1d04-8332c57c9b4c
+# ╠═bb1d1d3e-6fb3-11eb-2f56-01047ee62b7a
+# ╠═c12d94b2-6fb3-11eb-196c-f599816dc42e
 # ╟─82a8314c-64d8-11eb-1acb-e33625381178
 # ╟─576d5e3a-64d8-11eb-10c9-876be31f7830
 # ╠═2a94a2cf-b697-4b0b-afd0-af2e35af2bb1

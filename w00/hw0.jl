@@ -19,7 +19,7 @@ md"_Homework 0, version 3 -- Spring 2021_"
 # ╔═╡ 7308bc54-e6cd-11ea-0eab-83f7535edf25
 # edit the code below to set your name and kerberos ID (i.e. email without @mit.edu)
 
-student = (name = "Jazzy Doe", kerberos_id = "jazz")
+student = (name = "Vlad Flore", kerberos_id = "jazz")
 
 # press the ▶ button in the bottom right of this cell to run your edits
 # or use Shift+Enter
@@ -192,7 +192,7 @@ end
 md"Just like the definition above, our `sierpinksi` function is _recursive_: it calls itself."
 
 # ╔═╡ 02b9c9d6-e752-11ea-0f32-91b7b6481684
-complexity = 3
+complexity = 5
 
 # ╔═╡ 1eb79812-e7b5-11ea-1c10-63b24803dd8a
 if complexity == 3 
@@ -226,7 +226,10 @@ area_sierpinski(1) = 0.??
 
 # ╔═╡ ca8d2f72-e7b6-11ea-1893-f1e6d0a20dc7
 function area_sierpinski(n)
-	return 1.0
+	if n == 0
+		return 1.0
+	end
+	return 3*area_sierpinski(n-1)/4
 end
 
 # ╔═╡ 71c78614-e7bc-11ea-0959-c7a91a10d481
@@ -330,7 +333,7 @@ has area **$(area_sierpinski(n))**
 # ╟─d62f223c-e754-11ea-2470-e72a605a9d7e
 # ╠═4896bf0c-e754-11ea-19dc-1380bb356ab6
 # ╠═7a01a508-e78a-11ea-11da-999d38785348
-# ╟─682db9f8-e7b1-11ea-3949-6b683ca8b47b
+# ╠═682db9f8-e7b1-11ea-3949-6b683ca8b47b
 # ╟─088cc652-e7a8-11ea-0ca7-f744f6f3afdd
 # ╟─c18dce7a-e7a7-11ea-0a1a-f944d46754e5
 # ╟─5e24d95c-e6ce-11ea-24be-bb19e1e14657
@@ -356,5 +359,5 @@ has area **$(area_sierpinski(n))**
 # ╟─a60a492a-e7bc-11ea-0f0b-75d81ce46a01
 # ╟─b3c7a050-e855-11ea-3a22-3f514da746a4
 # ╟─d3625d20-e6ce-11ea-394a-53208540d626
-# ╟─dfdeab34-e751-11ea-0f90-2fa9bbdccb1e
-# ╟─b923d394-e750-11ea-1971-595e09ab35b5
+# ╠═dfdeab34-e751-11ea-0f90-2fa9bbdccb1e
+# ╠═b923d394-e750-11ea-1971-595e09ab35b5
