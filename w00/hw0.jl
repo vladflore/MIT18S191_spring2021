@@ -33,35 +33,99 @@ md"""
 Submission by: **_$(student.name)_** ($(student.kerberos_id)@mit.edu)
 """
 
-# ╔═╡ 430a260e-6cbb-11eb-34af-31366543c9dc
-md"""# Installation
-Before being able to run this note book succesfully locally, you will need to [set up Julia and Pluto.](/installation/)
+# ╔═╡ a2181260-e6cd-11ea-2a69-8d9d31d1ef0e
+md"""
+# Homework 0: Getting up and running
+
+HW0 release date: Monday, Feb 15, 2021.
+
+**HW0 due date: Thursday, Feb 18, 2021, 11:59pm EST**, _but best completed before Wednesday's lecture if possible_.
+
+First of all, **_welcome to the course!_** We are excited to teach you about real world applications of scientific computing, using the same tools that we work with ourselves.
+
+We'd like everyone to **submit this zeroth homework assignment**. It will not affect your grade, but it will help us get everything running smoothly when the course starts. If you're stuck or don't have much time, just fill in your name and ID and submit 🙂
 """
 
 # ╔═╡ 31a8fbf8-e6ce-11ea-2c66-4b4d02b41995
 md"""## Homework Logistics
-Homeworks are in the form of [Pluto notebooks](https://github.com/fonsp/Pluto.jl). Your must complete them and submit them on [Canvas](https://canvas.mit.edu/courses/5637) (if you are an MIT student.). If you are not an MIT student, we encourage you to [join discord](https://discord.gg/Z5qnVf8) and find someone to cross-grade.
-
-HW0 due date: Thursday, 18th Feb 2021
+Homeworks are in the form of [Pluto notebooks](https://github.com/fonsp/Pluto.jl). Your must complete them and submit them on [Canvas](https://canvas.mit.edu/courses/5637) (if you are an MIT student.). If you are not an MIT student, we encourage you to [join Discord](https://discord.gg/Z5qnVf8) and find someone to cross-grade.
 
 Homeworks will be released on Thursdays and due on Thursdays 11:59pm Eastern time.
 
 HW0 is for you to get your system set up correctly and to test our grading software. You must submit it but it will not count towards your grade.
 """
 
-# ╔═╡ a2181260-e6cd-11ea-2a69-8d9d31d1ef0e
-md"""
-# Homework 0: Getting up and running
+# ╔═╡ f9d7250a-706f-11eb-104d-3f07c59f7174
+md"## Requirements of this HW0
 
-First of all, **_welcome to the course!_** We are excited to teach you about real world applications of scientific computing, using the same tools that we work with ourselves.
+- Install Julia and set up Pluto    
+- Do the required Exercise 0.
 
-Before we start next week, we'd like everyone to **submit this zeroth homework assignment**. It will not affect your grade, but it will help us get everything running smoothly when the course starts. If you're stuck or don't have much time, just fill in your name and ID and submit 🙂
+That’s it, but if you like you can do the _OPTIONAL_ exercises that follow."
+
+# ╔═╡ 430a260e-6cbb-11eb-34af-31366543c9dc
+md"""# Installation
+Before being able to run this notebook succesfully locally, you will need to [set up Julia and Pluto.](/Spring21/installation/)
+
+One you have Julia and Pluto installed, you can click the button at the top right of this page and follow the instructions to edit this notebook locally and submit.
 """
 
-# ╔═╡ 339c2d5c-e6ce-11ea-32f9-714b3628909c
-md"## Exercise 1 - _Square root by Newton's method_
+# ╔═╡ a05d2bc8-7024-11eb-08cb-196543bbb8fd
+md"## (Required) Exercise 0 - _Making a basic function_
 
 Computing the square of a number is easy -- you just multiply it with itself.
+
+##### Algorithm:
+
+Given: $x$
+
+Output: $x^2$
+
+1. Multiply `x` by `x`"
+
+# ╔═╡ e02f7ea6-7024-11eb-3672-fd59a6cff79b
+function basic_square(x)
+	return x^2
+end
+
+# ╔═╡ 6acef56c-7025-11eb-2524-819c30a75d39
+let
+	result = basic_square(5)
+	if !(result isa Number)
+		md"""
+!!! warning "Not a number"
+    `basic_square` did not return a number. Did you forget to write `return`?
+		"""
+	elseif abs(result - 5*5) < 0.01
+		md"""
+!!! correct
+    Well done!
+		"""
+	else
+		md"""
+!!! warning "Incorrect"
+    Keep working on it!
+		"""
+	end
+end
+
+# ╔═╡ 348cea34-7025-11eb-3def-41bbc16c7512
+md"That's all that's required for this week. Please submit the notebook. We just wanted to make sure that you're up and running.
+
+If you want to explore further, we have included a few optional exercises below."
+
+# ╔═╡ b3c7a050-e855-11ea-3a22-3f514da746a4
+if student.kerberos_id === "jazz"
+	md"""
+!!! danger "Oops!"
+    **Before you submit**, remember to fill in your name and kerberos ID at the top of this notebook!
+	"""
+end
+
+# ╔═╡ 339c2d5c-e6ce-11ea-32f9-714b3628909c
+md"## (Optional) Exercise 1 - _Square root by Newton's method_
+
+Computing the square of a number is easy -- you already did it.
 
 But how does one compute the square root of a number?
 
@@ -151,7 +215,7 @@ md"""
 """
 
 # ╔═╡ 5e24d95c-e6ce-11ea-24be-bb19e1e14657
-md"## Exercise 2 - _Sierpinksi's triangle_
+md"## (Optional) Exercise 2 - _Sierpinksi's triangle_
 
 Sierpinski's triangle is defined _recursively_:
 
@@ -192,7 +256,7 @@ end
 md"Just like the definition above, our `sierpinksi` function is _recursive_: it calls itself."
 
 # ╔═╡ 02b9c9d6-e752-11ea-0f32-91b7b6481684
-complexity = 5
+complexity = 3
 
 # ╔═╡ 1eb79812-e7b5-11ea-1c10-63b24803dd8a
 if complexity == 3 
@@ -257,22 +321,8 @@ md"""
     Can you write `area_sierpinksi(n)` as a function of `area_sierpinski(n-1)`?
 """
 
-# ╔═╡ c9bf4288-e6ce-11ea-0e13-a36b5e685998
-
-
 # ╔═╡ a60a492a-e7bc-11ea-0f0b-75d81ce46a01
 md"That's it for now, see you next week!"
-
-# ╔═╡ b3c7a050-e855-11ea-3a22-3f514da746a4
-if student.kerberos_id === "jazz"
-	md"""
-!!! danger "Oops!"
-    **Before you submit**, remember to fill in your name and kerberos ID at the top of this notebook!
-	"""
-end
-
-# ╔═╡ d3625d20-e6ce-11ea-394a-53208540d626
-
 
 # ╔═╡ dfdeab34-e751-11ea-0f90-2fa9bbdccb1e
 triangle() = compose(context(), polygon([(1, 1), (0, 1), (1 / 2, 0)]))
@@ -323,9 +373,15 @@ has area **$(area_sierpinski(n))**
 # ╟─fafae38e-e852-11ea-1208-732b4744e4c2
 # ╟─cdff6730-e785-11ea-2546-4969521b33a7
 # ╠═7308bc54-e6cd-11ea-0eab-83f7535edf25
-# ╟─430a260e-6cbb-11eb-34af-31366543c9dc
-# ╟─31a8fbf8-e6ce-11ea-2c66-4b4d02b41995
 # ╟─a2181260-e6cd-11ea-2a69-8d9d31d1ef0e
+# ╟─31a8fbf8-e6ce-11ea-2c66-4b4d02b41995
+# ╟─f9d7250a-706f-11eb-104d-3f07c59f7174
+# ╟─430a260e-6cbb-11eb-34af-31366543c9dc
+# ╟─a05d2bc8-7024-11eb-08cb-196543bbb8fd
+# ╠═e02f7ea6-7024-11eb-3672-fd59a6cff79b
+# ╟─6acef56c-7025-11eb-2524-819c30a75d39
+# ╟─348cea34-7025-11eb-3def-41bbc16c7512
+# ╟─b3c7a050-e855-11ea-3a22-3f514da746a4
 # ╟─339c2d5c-e6ce-11ea-32f9-714b3628909c
 # ╟─56866718-e6ce-11ea-0804-d108af4e5653
 # ╠═bccf0e88-e754-11ea-3ab8-0170c2d44628
@@ -333,7 +389,7 @@ has area **$(area_sierpinski(n))**
 # ╟─d62f223c-e754-11ea-2470-e72a605a9d7e
 # ╠═4896bf0c-e754-11ea-19dc-1380bb356ab6
 # ╠═7a01a508-e78a-11ea-11da-999d38785348
-# ╠═682db9f8-e7b1-11ea-3949-6b683ca8b47b
+# ╟─682db9f8-e7b1-11ea-3949-6b683ca8b47b
 # ╟─088cc652-e7a8-11ea-0ca7-f744f6f3afdd
 # ╟─c18dce7a-e7a7-11ea-0a1a-f944d46754e5
 # ╟─5e24d95c-e6ce-11ea-24be-bb19e1e14657
@@ -355,9 +411,6 @@ has area **$(area_sierpinski(n))**
 # ╟─52533e00-e856-11ea-08a7-25e556fb1127
 # ╟─147ed7b0-e856-11ea-0d0e-7ff0d527e352
 # ╟─c1ecad86-e7bc-11ea-1201-23ee380181a1
-# ╟─c9bf4288-e6ce-11ea-0e13-a36b5e685998
 # ╟─a60a492a-e7bc-11ea-0f0b-75d81ce46a01
-# ╟─b3c7a050-e855-11ea-3a22-3f514da746a4
-# ╟─d3625d20-e6ce-11ea-394a-53208540d626
-# ╠═dfdeab34-e751-11ea-0f90-2fa9bbdccb1e
-# ╠═b923d394-e750-11ea-1971-595e09ab35b5
+# ╟─dfdeab34-e751-11ea-0f90-2fa9bbdccb1e
+# ╟─b923d394-e750-11ea-1971-595e09ab35b5

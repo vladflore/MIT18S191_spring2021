@@ -71,6 +71,13 @@ overflow-x: hidden;
 # ╔═╡ d07fcdb0-7afc-4a25-b68a-49fd1e3405e7
 PlutoUI.TableOfContents(aside=true)
 
+# ╔═╡ 9b49500c-0164-4556-a17b-7595e35c5ede
+md"""
+#### Intializing packages
+
+_When running this notebook for the first time, this could take up to 15 minutes. Hang in there!_
+"""
+
 # ╔═╡ ca1b507e-6017-11eb-34e6-6b85cd189002
 md"""
 # Lecture 1: Images as examples of data  all around us
@@ -152,6 +159,8 @@ md"""
 # Data: Images (as an example of data)
 Let's start off by looking at **images** and how we can process them. 
 Our goal is to process the data contained in an image in some way, which we will do by developing and coding certain **algorithms**.
+
+Here is the the Fall 2020 version of this lecture (small variations) by 3-Blue-1-Brown (Grant Sanderson) for your reference.
 """
 
 # ╔═╡ 635a03dd-abd7-49c8-a3d2-e68c7d83cc9b
@@ -418,7 +427,8 @@ md"""
 
 # ╔═╡ 63e8d636-ee0b-11ea-173d-bd3327347d55
 function invert(color::AbstractRGB)
-	return RGB(1-color.r, 1-color.g, 1-color.b)
+	
+	return RGB(1-color.r,1-color.g,1-color.b)
 end
 
 # ╔═╡ 2cc2f84e-ee0d-11ea-373b-e7ad3204bb00
@@ -490,7 +500,7 @@ And then modify it:
 # ╔═╡ 4f03f651-56ed-4361-b954-e6848ac56089
 let
 	temp = copy(philip_head)
-	temp[50, 50:100] .= RGB(0.0, 1.0, 0.0)
+	temp[50, 50:100] .= RGB(1.0, 0.0, 0.0)
 	temp
 end
 
@@ -502,7 +512,7 @@ Similarly we can modify a whole rectangular block of pixels:
 # ╔═╡ 1bd53326-d705-4d1a-bf8f-5d7f2a4e696f
 let
 	temp = copy(philip_head)
-	temp[50:100, 50:100] .= RGB(0.0, 0.0, 1.0)
+	temp[50:100, 50:100] .= RGB(1.0, 0.0, 0.0)
 	temp
 end
 
@@ -515,9 +525,9 @@ md"""
 
 # ╔═╡ b6b65b94-edf0-11ea-3686-fbff0ff53d08
 function create_bar()
-	bar = zeros(100)
-	bar[41:61].=1
-	return bar
+	v = zeros(100)
+	v[41:61].=1
+	return v
 end
 
 # ╔═╡ 693af19c-64cc-11eb-31f3-57ab2fbae597
@@ -711,24 +721,24 @@ md"""
 What is going on here is that we are creating a vector in which `red_value` takes each value in turn from the range from `0` up to the current value of `number_reds`. If we change `number_reds`, then we create a new vector with that new number of red patches.
 """
 
-# ╔═╡ 7e3b6c9c-6fb3-11eb-3288-e5a7dffb3387
-@bind slider_red Slider(1:100, show_value=true)
-
-# ╔═╡ bb18fab2-6fb3-11eb-1d04-8332c57c9b4c
-@bind slider_green Slider(1:100, show_value=true)
-
-# ╔═╡ bb1d1d3e-6fb3-11eb-2f56-01047ee62b7a
-@bind slider_blue Slider(1:100, show_value=true)
-
-# ╔═╡ c12d94b2-6fb3-11eb-196c-f599816dc42e
-RGB(slider_red/255,slider_green/255,slider_blue/255)
-
 # ╔═╡ 82a8314c-64d8-11eb-1acb-e33625381178
 md"""
 #### Exercise
 
 > Make three sliders with variables `r`, `g` and `b`. Then make a single color patch with the RGB color given by those values.
 """
+
+# ╔═╡ 4450d19c-709a-11eb-2cd8-2b8750e63c59
+@bind r Slider(1:100, show_value=true)
+
+# ╔═╡ 5373ee16-709a-11eb-2026-599e43f142c8
+@bind g Slider(1:100, show_value=true)
+
+# ╔═╡ 5ba87b88-709a-11eb-13b4-b74cc3d7f691
+@bind b Slider(1:100, show_value=true)
+
+# ╔═╡ 64c0ca36-709a-11eb-3eb9-5f580c69c42f
+RGB(r/255,g/255,b/255)
 
 # ╔═╡ 576d5e3a-64d8-11eb-10c9-876be31f7830
 md"""
@@ -1151,8 +1161,9 @@ md"_Lecture 1, Spring 2021, version 0_"
 
 # ╔═╡ Cell order:
 # ╟─e91d7926-ec6e-41e7-aba2-9dca333c8aa5
+# ╟─d07fcdb0-7afc-4a25-b68a-49fd1e3405e7
+# ╟─9b49500c-0164-4556-a17b-7595e35c5ede
 # ╠═74b008f6-ed6b-11ea-291f-b3791d6d1b35
-# ╠═d07fcdb0-7afc-4a25-b68a-49fd1e3405e7
 # ╟─ca1b507e-6017-11eb-34e6-6b85cd189002
 # ╟─e9ff96d8-6bc1-11eb-0f6a-234b9fae047e
 # ╟─9111db10-6bc3-11eb-38e5-cf3f58536914
@@ -1271,11 +1282,11 @@ md"_Lecture 1, Spring 2021, version 0_"
 # ╠═88933746-6028-11eb-32de-13eb6ff43e29
 # ╟─1c539b02-64d8-11eb-3505-c9288357d139
 # ╟─10f6e6da-64d8-11eb-366f-11f16e73043b
-# ╠═7e3b6c9c-6fb3-11eb-3288-e5a7dffb3387
-# ╠═bb18fab2-6fb3-11eb-1d04-8332c57c9b4c
-# ╠═bb1d1d3e-6fb3-11eb-2f56-01047ee62b7a
-# ╠═c12d94b2-6fb3-11eb-196c-f599816dc42e
 # ╟─82a8314c-64d8-11eb-1acb-e33625381178
+# ╠═4450d19c-709a-11eb-2cd8-2b8750e63c59
+# ╠═5373ee16-709a-11eb-2026-599e43f142c8
+# ╠═5ba87b88-709a-11eb-13b4-b74cc3d7f691
+# ╠═64c0ca36-709a-11eb-3eb9-5f580c69c42f
 # ╟─576d5e3a-64d8-11eb-10c9-876be31f7830
 # ╠═2a94a2cf-b697-4b0b-afd0-af2e35af2bb1
 # ╠═3e0ece65-b8a7-4be7-ae44-6d7210c2e15b
