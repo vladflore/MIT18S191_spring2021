@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.12.20
+# v0.14.0
 
 using Markdown
 using InteractiveUtils
@@ -17,13 +17,26 @@ end
 begin
 	import Pkg
 	Pkg.activate(mktempdir())
-	Pkg.add(["Images", "ImageMagick", "Colors", "PlutoUI", "HypertextLiteral"])
+	Pkg.add([
+		Pkg.PackageSpec(name="ImageIO", version="0.5"),
+		Pkg.PackageSpec(name="ImageShow", version="0.2"),
+		Pkg.PackageSpec(name="FileIO", version="1.6"),
+		Pkg.PackageSpec(name="PNGFiles", version="0.3.6"),
+		Pkg.PackageSpec(name="Colors", version="0.12"),
+		Pkg.PackageSpec(name="ColorVectorSpace", version="0.8"),
+		Pkg.PackageSpec(name="PlutoUI", version="0.7"), 
+		Pkg.PackageSpec(name="HypertextLiteral", version="0.5")
+	])
 
-	using Images
-	using Colors
+	using Colors, ColorVectorSpace, ImageShow, FileIO
 	using PlutoUI
 	using HypertextLiteral
 end
+
+# ╔═╡ 71a1e08a-6abc-48d5-b177-5184dbdd76a8
+filter!(LOAD_PATH) do path
+	path != "@v#.#"
+end;
 
 # ╔═╡ e91d7926-ec6e-41e7-aba2-9dca333c8aa5
 html"""
@@ -57,7 +70,7 @@ font-size: 1.5rem;
 opacity: .8;
 "><em>Section 1.1</em></p>
 <p style="text-align: center; font-size: 2rem;">
-<em>Working with images<br>and arrays</em>
+<em>Images as data <br>and arrays</em>
 </p>
 </div>
 
@@ -71,6 +84,14 @@ overflow-x: hidden;
 # ╔═╡ d07fcdb0-7afc-4a25-b68a-49fd1e3405e7
 PlutoUI.TableOfContents(aside=true)
 
+# ╔═╡ 1dc95dba-7acd-11eb-133b-91f0e227818f
+md"# Lecture Video"
+
+# ╔═╡ 2b921520-7acd-11eb-24f3-6d371facf277
+html"""
+<div notthestyle="position: relative; right: 0; top: 0; z-index: 300;"><iframe src="https://www.youtube.com/embed/3zTO3LEY-cM" width=400 height=250  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+"""
+
 # ╔═╡ 9b49500c-0164-4556-a17b-7595e35c5ede
 md"""
 #### Intializing packages
@@ -80,7 +101,7 @@ _When running this notebook for the first time, this could take up to 15 minutes
 
 # ╔═╡ ca1b507e-6017-11eb-34e6-6b85cd189002
 md"""
-# Lecture 1: Images as examples of data  all around us
+# Images as examples of data  all around us
 Welcome to the Computational Thinking using Julia for Real-World Problems, at MIT in Spring 2021!
 
 The aim of this course is to bring together concepts from computer science and applied math with coding in the modern **Julia language**, and to see how to apply these techniques to study interesting applications (and of course to have fun).
@@ -368,7 +389,7 @@ philip_head = philip[470:800, 140:410]
 
 # ╔═╡ 32e7e51c-dd0d-483d-95cb-e6043f2b2975
 md"""
-#### Zoom in on Philip's nose!
+#### Scroll in on Philip's nose!
 
 Use the widgets below (slide left and right sides).
 """
@@ -1152,8 +1173,11 @@ md"_Lecture 1, Spring 2021, version 0_"
 # ╔═╡ Cell order:
 # ╟─e91d7926-ec6e-41e7-aba2-9dca333c8aa5
 # ╟─d07fcdb0-7afc-4a25-b68a-49fd1e3405e7
+# ╟─1dc95dba-7acd-11eb-133b-91f0e227818f
+# ╟─2b921520-7acd-11eb-24f3-6d371facf277
 # ╟─9b49500c-0164-4556-a17b-7595e35c5ede
 # ╠═74b008f6-ed6b-11ea-291f-b3791d6d1b35
+# ╟─71a1e08a-6abc-48d5-b177-5184dbdd76a8
 # ╟─ca1b507e-6017-11eb-34e6-6b85cd189002
 # ╟─e9ff96d8-6bc1-11eb-0f6a-234b9fae047e
 # ╟─9111db10-6bc3-11eb-38e5-cf3f58536914
